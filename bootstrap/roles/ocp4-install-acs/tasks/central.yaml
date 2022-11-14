@@ -13,17 +13,17 @@
   debug:
     msg: "{{ ocp4_cluster_version }}"
 
-#- name: Create ACS namespace
-#  kubernetes.core.k8s:
-#    name: stackrox
-#    api_version: v1
-#    kind: Namespace
-#    state: present
+- name: Create ACS namespace
+  kubernetes.core.k8s:
+    name: stackrox
+    api_version: v1
+    kind: Namespace
+    state: present
 
-#- name: Create ACS Central password
-#  kubernetes.core.k8s:
-#    state: present
-#    definition: "{{ lookup('template', 'acs-password.yml.j2') }}"
+- name: Create ACS Central password
+  kubernetes.core.k8s:
+    state: present
+    definition: "{{ lookup('template', 'acs-password.yml.j2') }}"
 
 - name: Install ACS Operator
   kubernetes.core.k8s:
