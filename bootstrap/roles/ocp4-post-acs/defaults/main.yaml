@@ -1,4 +1,4 @@
-
+f_stackrox_central_addr: central-stackrox.apps.cluster-pkp6b.pkp6b.sandbox1405.opentlc.com
 stackrox_central_admin_password: stackrox
 ocp4_demo_pipeline_namespace: cicd
 acs_expected_crds:
