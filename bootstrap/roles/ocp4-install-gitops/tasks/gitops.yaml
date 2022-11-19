@@ -13,10 +13,10 @@
   debug:
     msg: "{{ ocp4_cluster_version }}"
 
-- name: Install GitOps Operator
-  kubernetes.core.k8s:
-    state: present
-    definition: "{{ lookup('template', 'subs-gitops.yml.j2') }}"
+#- name: Install GitOps Operator
+#  kubernetes.core.k8s:
+#    state: present
+#    definition: "{{ lookup('template', 'subs-gitops.yml.j2') }}"
 
 - name: Adapt to the openshift_cluster_version LESS than 4.9
   when: ocp4_cluster_version is version_compare('4.9', '<')
@@ -88,10 +88,10 @@
     state: present
     definition: "{{ lookup('template', 'gitops-rb.yml.j2') }}"
 
-#- name: Install ArgoCD
-#  k8s:
-#    state: present
-#    definition: "{{ lookup('template', 'gitops-argocd.yaml.j2') | from_yaml }}"
+- name: Install ArgoCD
+  k8s:
+    state: present
+    definition: "{{ lookup('template', 'gitops-argocd.yaml.j2') | from_yaml }}"
 
 - name: Patch the CM of Openshift GitOps to add role admin by default
   command: oc patch cm/argocd-rbac-cm -n openshift-gitops --type=merge -p '{"data":{"policy.default":"role:admin"}}'
